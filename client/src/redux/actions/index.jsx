@@ -47,7 +47,7 @@ export const getHuerta =
   };
 
 export const crearPlanta = (planta) => async () => {
-  await axios.post('http://localhost:3001/createplant',
+  await axios.post(`${API_URL}/createplant`,
     planta
   );
 };
