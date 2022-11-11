@@ -7,7 +7,7 @@ const routes = require('./routes/plants.js');
 const filter = require('./routes/filter.js');
 
 const routes2 = require('./routes/createPlant.js');
-
+const Daily = require('./routes/Daily.js')
 require('./db.js');
 
 const server = express();
@@ -31,6 +31,9 @@ server.use('/plants', routes);
 server.use('/filter', filter);
 
 server.use('/createplant', routes2);
+
+server.use('/daily', Daily);
+
 
 
 // Error catching endware.

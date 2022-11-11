@@ -109,21 +109,6 @@ router.put("/", async (req, res) => {
   }
 });
 
-
-//ENCONTRAR PLANTA POR PARAMS 
-router.get("/:id", async (req, res)=>{
-  try {
-    const {id} = req.params;
-
-    let plant = await getDbId(id)
-    
-    return res.status(200).json(plant)
-
-  } catch (error) {
-    res.status(400).json("Error en Routes -> plants.js: ",error.message)
-  }
-})
-
 router.get("/types", async (req, res) => {
   const tabla = await Plants.findAll();
   try {
@@ -181,5 +166,20 @@ router.get("/types", async (req, res) => {
     return res.status(400).send(e);
   }
 });
+
+//ENCONTRAR PLANTA POR PARAMS 
+router.get("/:id", async (req, res)=>{
+  try {
+    const {id} = req.params;
+
+    let plant = await getDbId(id)
+    
+    return res.status(200).json(plant)
+
+  } catch (error) {
+    res.status(400).json("Error en Routes -> plants.js: ",error.message)
+  }
+})
+
 
 module.exports = router;
