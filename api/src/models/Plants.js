@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       unique: true
     },
     namePlant:{
-      type:DataTypes.ARRAY(DataTypes.STRING),
+      type:DataTypes.STRING,
       allowNull: false,
       unique:true,
     },
@@ -20,36 +20,36 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     ubication:{
-      type:DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true
     },
-    luminosidad:{
+    ligth:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
-    },
-    riego:{
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
-    },
-    tamano:{
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
-    },
-    tipo:{
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
-    },  
-    clima:{
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
-      }, 
-    toxicidad:{
-        type: DataTypes.BOOLEAN,
         allowNull: true
+    },
+    whater:{
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true
+    },
+    size:{
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true
+    },
+    type:{
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true
+    },  
+    climate:{
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true
+      }, 
+      toxicity:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false
     },
     statePlant:{
         type: DataTypes.BOOLEAN,
-        allowNull: true,
+        allowNull: false,
         defaultValue: true
     },
     imagePlant:{
