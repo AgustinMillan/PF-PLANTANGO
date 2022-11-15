@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     codCategory:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     starts:{

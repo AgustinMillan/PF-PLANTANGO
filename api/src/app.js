@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/plants.js");
 const UserR = require("./routes/user.js");
+const Prod = require("./routes/products.js");
 require("./db.js");
 
 const server = express();
@@ -26,7 +27,9 @@ server.use((req, res, next) => {
 });
 
 server.use("/plants", routes);
-server.use("/user",UserR)
+server.use("/user",UserR);
+server.use("/products",Prod);
+
 
 // Error catching endware.
 server.use((err, req, res, next) => {

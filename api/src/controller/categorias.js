@@ -7,6 +7,7 @@ const llenarDBCategory = async () => {
   if (!tabla.length) {
     const db = dbCategory.map((categoria) => {
       return {
+        codCategory: categoria.CODIGO,
         decripCategory: categoria.DESCRIPCION,
       };
     });

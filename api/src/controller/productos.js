@@ -9,7 +9,7 @@ const llenarDBProd = async () => {
       return {
         nameProd: prod.NOMBRE,
         descripProd: prod.DESCRIPCION,
-        // codCategory: prod.CATEGORIA,
+        codCategory: prod.CATEGORIA,
         starts: prod.ESTRELLAS,
         price: prod.PRECIO,
         actualStock: prod.ACTUAL_STOCK,
