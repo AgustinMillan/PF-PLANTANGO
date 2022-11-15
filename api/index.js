@@ -25,6 +25,7 @@
 // [plantango.app]
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
+const { llenarDBCategory } = require("./src/controller/categorias.js");
 const { llenarDB } = require("./src/controller/plantas.js");
 const{ llenarDBProd } = require("./src/controller/productos.js")
 const { conn } = require("./src/db.js");
@@ -34,6 +35,7 @@ conn
   .sync({ force: false })
   .then(llenarDB)
   .then(llenarDBProd)
+  .then(llenarDBCategory)
   .then(() => {
     server.listen(3001, () => {
       console.log("%s listening at 3001"); // eslint-disable-line no-console
