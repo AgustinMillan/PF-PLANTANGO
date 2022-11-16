@@ -20,7 +20,8 @@ const initialState = {
   arrayNotificaciones: [],
   arrayCarrito: [],
   url: '',
-  nombre: 'perfil'
+  nombre: 'perfil',
+  carrito: JSON.parse(localStorage.getItem("carrito")) || []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -72,7 +73,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         nombre: `${action.payload}`
       }
-      case GET_SEARCH: 
+    case GET_SEARCH:
       return {
         ...state,
         arrayHuerta: action.payload

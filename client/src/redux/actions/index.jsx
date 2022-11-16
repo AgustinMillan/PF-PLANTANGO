@@ -13,6 +13,8 @@ export const ACTIVAR = 'ACTIVAR'
 export const URL = "URL"
 export const GET_SEARCH = "GET_SEARCH";
 
+export const CARRITO = 'CARRITO'
+
 const API_URL = "http://localhost:3001";
 
 const get = async (url, parameter = {}) => {
@@ -77,14 +79,25 @@ export const urlPlantaCreada = (url) => (dispatch) => {
 export const activaciones = (nombre) => dispatch => {
   return dispatch({ type: ACTIVAR, payload: nombre })
 }
-export const getSearch = (search)=> {
+export const getSearch = (search) => {
   try {
-    return(dispatch)=>{
+    return (dispatch) => {
       fetch(`http://localhost:3001/plants?search=${search}`)
-      .then ((response)=> response.json())
-      .then((data)=> dispatch({ type: GET_SEARCH, payload: data}))
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: GET_SEARCH, payload: data }))
     }
   } catch (error) {
     throw new Error("Error en actions  -> getSearch")
   }
 }
+
+/* export const carrito => () = (dispatch) => {
+    const handleIncrement = (carrito, product_id) => {
+        const newCarrito = carrito.map(ele => ele.id === product_id ? { ...ele, quantity: ele.quantity + 1 } : ele)
+        return dispatchEvent(type: dsfgsdfsd, action: )
+    }
+    const handleDecrement = (carrito, product_id) => {
+        const newCarrito = carrito.map(ele => ele.id === product_id ? { ...ele, quantity: ele.quantity - (ele.quantity > 1 ? 1 : 0) } : ele)
+        return dispatchEvent(type: dsfgsdfsd, action: )
+    }
+} */

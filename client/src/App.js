@@ -14,6 +14,7 @@ import Detalle from "./Components/Detalle";
 import Breadcrumbs from "./Components/Breadcrumbs";
 import Profile from "./Components/Profile";
 import Ajustes from './Components/Ajustes'
+import Vivero from './Components/Vivero'
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
             <Route path="/bienvenida" element={<Chat />} />
             <Route path="/creacionPlanta" element={<CreacionDePlanta />} />
             <Route path="/huerta" element={<Huerta />} />
+            <Route path="/vivero" element={<Vivero />} />
             <Route
               path="/huerta/:id"
               element={<Detalle from={getHuertaDetail} />}
