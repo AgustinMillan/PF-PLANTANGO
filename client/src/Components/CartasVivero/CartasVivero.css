@@ -6,21 +6,58 @@
 }
 
 .cardContainerVivero {
-    border: 1px solid #ddd;
-    margin: 20px 0px;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    margin: 30px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    border-radius: 10px;
+    justify-content: start;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     cursor: pointer;
-    width: 320px;
-    height: 380px;
+    position: relative;
+    width: 200px;
+    height: 220px;
+    z-index: 9;
+}
+
+.cardContainerVivero:hover .nameProduc {
+    display: block;
+    bottom: -68px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameProduc {
+    font-weight: 400;
+    display: none;
+    height: 24%;
+    width: 101%;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: -1;
+    position: absolute;
+    bottom: -20px;
+}
+
+.price {
+    position: absolute;
+    font-weight: 400;
+    bottom: 10px;
+    left: 30%;
 }
 
 .imgVivero {
-    width: 290px;
-    height: 200px;
+    margin-top: 20px;
+    width: 200px;
+    height: 140px;
 }
 
 .btnAgregarCarrito {
@@ -64,7 +101,7 @@
     height: 100%;
     right: 50%;
     top: 0;
-    background: linear-gradient(to bottom,
+    background: linear-gradient(to top,
             #bafd4e 0%,
             rgb(121, 249, 82) 15%,
             rgb(83, 246, 91) 30%,
@@ -89,7 +126,7 @@
     height: 100%;
     left: 50%;
     top: 0;
-    background: linear-gradient(to bottom,
+    background: linear-gradient(to top,
             #bafd4e 0%,
             rgb(121, 249, 82) 15%,
             rgb(83, 246, 91) 30%,

@@ -1,36 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { traerProductos } from '../../redux/actions'
+import { useNavigate } from 'react-router-dom'
 import './CartasVivero.css'
 
 const CartasVivero = (props) => {
-    const [cantidad, setCantidad] = useState({})
-    const { productos } = props;
-    const cambiarCantidad = (e, index) => {
-    }
-    const subirAlStorage = (producto) => {
-        console.log(producto)
-        localStorage.setItem("carrito", [JSON.stringify({
-            ...producto,
-            cantidad: cantidad
-        })])
-    }
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const arrayVivero = useSelector(state => state.arrayVivero)
+    useEffect(() => {
+        dispatch(traerProductos())
+    }, [])
     return (
         <div className='containerCardVivero'>
             {
-                productos?.map((produc, index) => {
+                arrayVivero.data?.map((produc, index) => {
                     return (
-                        <div key={index} className='cardContainerVivero estilos'>
-                            <h3>{produc.NOMBRE}</h3>
-                            <img src={produc.IMAGEN} alt='img' className='imgVivero' />
-                            <h6 style={{ textAlign: 'center' }}>{produc.TIPO}</h6>
-                            <div className='containerCantidad'>
-                                <button name='menos' onClick={(e) => cambiarCantidad(e, index)}>-</button>
-                                <h5 className='cantidadVariada'>{cantidad[index] ? cantidad[index] : 0}</h5>
-                                <button name='mas' onClick={(e) => cambiarCantidad(e, index)}>+</button>
-                            </div>
-                            <button className='btnAgregarCarrito' onClick={() => subirAlStorage(produc)}>
-                                <p>Agregar al carrito</p>
-                                Agregar al carrito
-                            </button>
+                        <div key={index} className='cardContainerVivero estilos' onClick={() => navigate(`/vivero/${produc.codProd}`)}>
+                            <img src={produc.imageProd} alt='img' className='imgVivero' />
+                            <h4 className='price'>{`$${produc.price}`}</h4>
+                            <p className='nameProduc' style={{ textAlign: 'center' }}>{produc.nameProd}</p>
                         </div>
                     )
                 })

@@ -2,20 +2,32 @@ import axios from "axios";
 import { plantaADetalle } from "../utils";
 
 export const GET_TIPOS_HUERTA = "GET_TIPOS_HUERTA";
-export const CONSTRAIN_HUERTA = "CONSTRAIN_HUERTA";
+export const SET_FILTROS_HUERTA = "SET_FILTROS_HUERTA";
+export const SET_PAG_HUERTA = "SET_PAG_HUERTA";
 export const GET_ARRAY_HUERTA = "GET_ARRAY_HUERTA";
+export const GET_ARRAY_PRODUCTS = "GET_ARRAY_PRODUCTS";
+export const GET_PRODUCT = 'GET_PRODUCT'
+export const GET_ARRAY_CARRITO = 'GET_ARRAY_CARRITO';
 
 export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
 export const GET_ARRAY_NOTIFICACIONES = "GET_ARRAY_NOTIFICACIONES";
-export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
-export const ACTIVAR = 'ACTIVAR'
+export const ACTIVAR = "ACTIVAR";
 
-export const URL = "URL"
+export const URL = "URL";
 export const GET_SEARCH = "GET_SEARCH";
 
-export const CARRITO = 'CARRITO'
+export const GET_ALL_FAVORITES = "GET_ALL_FAVORITES";
+export const GET_USER = "GET_USER";
+
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const CREATE_ADMIN = "CREATE_ADMIN"
 
 const API_URL = "http://localhost:3001";
+
+export const carritoStorage = (arr) => (dispatch) => {
+  if (arr === null) arr = [];
+  return dispatch({ type: GET_ARRAY_CARRITO, payload: arr })
+}
 
 const get = async (url, parameter = {}) => {
   const response = await axios.get(`${API_URL}/${url}`, parameter);
@@ -43,9 +55,12 @@ export const getTiposHuerta = () => (dispatch) => {
   });
 };
 
-export const constrainHuerta = (e) => (dispatch) => {
-  console.log("aplicando constrain a redux", e);
-  dispatch({ type: CONSTRAIN_HUERTA, payload: e });
+export const setFiltrosHuerta = (e) => (dispatch) => {
+  dispatch({ type: SET_FILTROS_HUERTA, payload: e });
+};
+
+export const setPagHuerta = (e) => (dispatch) => {
+  dispatch({ type: SET_PAG_HUERTA, payload: e });
 };
 
 export const getHuertaDetail = async (id) => {
@@ -69,35 +84,70 @@ export const getHuerta =
     };
 
 export const crearPlanta = (planta) => async () => {
-  await axios.post(`${API_URL}/plants/creacion`, planta)
+  await axios.post(`${API_URL}/plants/creacion`, planta);
 };
 
 export const urlPlantaCreada = (url) => (dispatch) => {
-  return dispatch({ type: URL, payload: url })
-}
+  return dispatch({ type: URL, payload: url });
+};
 
-export const activaciones = (nombre) => dispatch => {
-  return dispatch({ type: ACTIVAR, payload: nombre })
-}
+export const activaciones = (nombre) => (dispatch) => {
+  return dispatch({ type: ACTIVAR, payload: nombre });
+};
+
 export const getSearch = (search) => {
-  try {
-    return (dispatch) => {
+  return (dispatch) => {
+    try {
       fetch(`http://localhost:3001/plants?search=${search}`)
         .then((response) => response.json())
-        .then((data) => dispatch({ type: GET_SEARCH, payload: data }))
+        .then((data) => dispatch({ type: GET_SEARCH, payload: data }));
+    } catch (error) {
+      throw new Error("Error en actions  -> getSearch");
     }
-  } catch (error) {
-    throw new Error("Error en actions  -> getSearch")
+  };
+};
+
+export function getFav(idU) {
+  return (dispatch) =>
+    axios(`http://localhost:3001/user/favorites/${idU}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: GET_ALL_FAVORITES, payload }));
+}
+
+export function getUser(user) {
+  return (dispatch) =>
+    axios(`http://localhost:3001/user/${user}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: GET_USER, payload }));
+}
+
+
+export const getAllUsers = () => {
+  console.log("LLEGUE A LA ACTION");
+  return (dispatch) => {
+    fetch(`http://localhost:3001/user/all`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("DATA: ", data);
+        dispatch({ type: GET_ALL_USERS, payload: data })
+      })
+
   }
 }
 
-/* export const carrito => () = (dispatch) => {
-    const handleIncrement = (carrito, product_id) => {
-        const newCarrito = carrito.map(ele => ele.id === product_id ? { ...ele, quantity: ele.quantity + 1 } : ele)
-        return dispatchEvent(type: dsfgsdfsd, action: )
-    }
-    const handleDecrement = (carrito, product_id) => {
-        const newCarrito = carrito.map(ele => ele.id === product_id ? { ...ele, quantity: ele.quantity - (ele.quantity > 1 ? 1 : 0) } : ele)
-        return dispatchEvent(type: dsfgsdfsd, action: )
-    }
-} */
+export const addAdmin = (newAdmin) => {
+  return async (dispatch) => {
+    await axios.post(`http://localhost:3001/user/`, newAdmin);
+    return dispatch({ type: CREATE_ADMIN })
+  }
+}
+
+export const traerProductos = () => async (dispatch) => {
+  return await axios.get("http://localhost:3001/products")
+    .then(productos => dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos }))
+}
+
+export const traerProducto = (id) => async (dispatch) => {
+  return await axios.get(`http://localhost:3001/products/${id}`)
+    .then(producto => dispatch({ type: GET_PRODUCT, payload: producto.data }))
+}
