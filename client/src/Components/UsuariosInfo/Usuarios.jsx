@@ -25,7 +25,7 @@ window.location. reload();
 }
 
     return ( 
-        <table>
+        <table className="table table-success table-striped" style={{marginBottom: '0px'}}>
             <thead>
             <tr>
                 <th>UserName</th>
