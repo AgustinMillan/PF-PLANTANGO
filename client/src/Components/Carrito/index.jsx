@@ -3,6 +3,7 @@ import "./Modal.css";
 import { useSelector, useDispatch } from "react-redux";
 import { carritoStorage } from "../../redux/actions";
 import Notiflix from 'notiflix';
+import axios from 'axios';
 
 const Carrito = () => {
   const dispatch = useDispatch();
@@ -69,6 +70,11 @@ const Carrito = () => {
     }
   }
 
+  const comprarBtnHandler = () => {
+    // console.log(arrayCarrito);
+    axios.post("http://localhost:3001/pay/payment", arrayCarrito);
+  };
+
   return (
     <div
       onClick={pararProp}
@@ -114,7 +120,7 @@ const Carrito = () => {
           <div className="modal-footer" style={{ position: 'relative' }}>
             <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + parseInt(des.precio / 100) * des.cantidad, 0)}`}</p>
             <button className="btn btn-danger" onClick={borrarCarrito}>Vaciar carrito</button>
-            <button className="btn btn-success">Hacer compra</button>
+            <button className="btn btn-success" onClick={comprarBtnHandler}>Hacer compra</button>
           </div>
         </div>
       </div>
