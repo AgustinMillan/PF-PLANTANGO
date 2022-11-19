@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { carritoStorage } from "../../redux/actions";
 import Notiflix from 'notiflix';
 import axios from 'axios';
+import mercadopago from ("mercadopago");
+
 
 const Carrito = () => {
   const dispatch = useDispatch();
@@ -70,9 +72,42 @@ const Carrito = () => {
     }
   }
 
+
+  const mp = new MercadoPago('PUBLIC_KEY', {
+    locale: 'es-AR'
+  });
+
   const comprarBtnHandler = () => {
     // console.log(arrayCarrito);
-    axios.post("http://localhost:3001/pay/payment", arrayCarrito);
+    const preference = axios.post("http://localhost:3001/pay/payment", arrayCarrito);
+return(
+    <script type="text/javascript"
+    src="https://
+    secure.mlstatic.c
+    om/sdk/javascript/v1/
+    mercadopago.js">
+      {
+  mp.checkout({
+    preference: {
+      id: preference.preferenceId
+    },
+    render: {
+      container: '.modal-footer',
+      label: 'Pagar',
+    }
+  })
+      }
+</script>
+)
+
+    // var script = document.createElement("script");
+    // script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+    // script.type = "text/javascript";
+    // script.dataset.preferenceId = preference.preferenceId;
+    // document.getElementById("modal-footer").innerHTML = "";
+    // document.querySelector("#modal-footer").appendChild(script)
+
+
   };
 
   return (
@@ -117,7 +152,7 @@ const Carrito = () => {
               })
             }
           </div>
-          <div className="modal-footer" style={{ position: 'relative' }}>
+          <div id="modal-footer" className="modal-footer" style={{ position: 'relative' }}>
             <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + parseInt(des.precio / 100) * des.cantidad, 0)}`}</p>
             <button className="btn btn-danger" onClick={borrarCarrito}>Vaciar carrito</button>
             <button className="btn btn-success" onClick={comprarBtnHandler}>Hacer compra</button>
