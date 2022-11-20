@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { recordatorio } from '../../redux/actions'
+import io from 'socket.io-client'
+
+const socket = io('http://localhost:3002')
+console.log("SOCKETTT", socket)
 
 const Recordatorio = () => {
     const dispatch = useDispatch()
@@ -16,11 +20,14 @@ const Recordatorio = () => {
             horario: tiempo
         })
     }
-    console.log(enviar)
     const enviarRecordatorio = () => {
-        if (enviar.usuario.length && enviar.horario.length) dispatch(recordatorio(enviar))
-        else console.log("te falta cosas papito")
+        socket.emit("recordatorio", enviar)
     }
+
+    useEffect(() => {
+        socket.on("cosita", (message) => console.log(message))
+    })
+
     return (
         <div>
             <input

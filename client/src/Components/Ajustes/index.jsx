@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Tab from '@mui/material/Tab';
-
+import CreacionDePlanta from '../CreacionDePlanta';
 import BadgeIcon from '@mui/icons-material/Badge';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import LocalFlorist from '@mui/icons-material/LocalFloristSharp';
 import Profile from '../Profile/index';
 import DashboardAdmin from '../DashboardAdmin/index';
 import UsuariosInfo from '../UsuariosInfo/UsuarioInfo'
@@ -28,6 +29,11 @@ const Ajustes = () => {
             outline: "none"
           }
         }} label="Admin Usuarios" value="AdminUser" />
+        <Tab icon={<LocalFlorist />} sx={{
+          "&:focus": {
+            outline: "none"
+          }
+        }} label="Creacion De Planta" value="CreacionDePlanta" />
         <Tab icon={<AttachMoneyIcon />} sx={{
           "&:focus": {
             outline: "none"
@@ -36,6 +42,7 @@ const Ajustes = () => {
       </TabList>
       <TabPanel value="Profile"><Profile /></TabPanel>
       <TabPanel value="AdminUser"><UsuariosInfo /></TabPanel>
+      <TabPanel value="CreacionDePlanta"><CreacionDePlanta /></TabPanel>
       <TabPanel value="DashBoard"><DashboardAdmin /></TabPanel>
     </TabContext>
   )
