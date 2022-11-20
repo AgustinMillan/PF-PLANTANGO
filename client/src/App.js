@@ -47,7 +47,7 @@ function App() {
       dispatch(getUser(user.email));
     }
     dispatch(carritoStorage(JSON.parse(localStorage.getItem("carrito"))))
-    dispatch(traerNotificaciones(JSON.parse(localStorage.getItem("Notificaciones"))))
+    // dispatch(traerNotificaciones(JSON.parse(localStorage.getItem("Notificaciones"))))
   }, [user]);
   console.log(user)
   return (
