@@ -35,6 +35,15 @@ const {
 const { llenarDBPlants } = require("./src/controller/plantas.js");
 const { llenarDBProd } = require("./src/controller/productos.js");
 const { conn } = require("./src/db.js");
+/* const appSock = require('express');
+
+appSock.set('port', process.env.PORT || 3002)
+
+appSock.use(express.static('public'))
+
+appSock.listen(app.get('port'), () => {
+  console.log("escuchando el 3002")
+}) */
 
 // Syncing all the models at once.
 // Por motivos de desarrollo, podrian dejar la syncronizacion forzada?

@@ -6,7 +6,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         horario: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
         }
     })
 }
