@@ -73,32 +73,9 @@ const Carrito = () => {
 
 
   const comprarBtnHandler = () => {
-    // console.log(arrayCarrito);
-    const preference = axios.post("http://localhost:3001/pay/payment", arrayCarrito);
-// return(
-//     <script>
-//       {
-//   mp.checkout({
-//     preference: {
-//       id: preference.preferenceId
-//     },
-//     render: {
-//       container: '.modal-footer',
-//       label: 'Pagar',
-//     }
-//   })
-//       }
-// </script>
-// )
-
-    var script = document.createElement("script");
-    script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-    script.type = "text/javascript";
-    script.dataset.preferenceId = preference.preferenceId;
-    document.getElementById("modal-footer").innerHTML = "";
-    document.querySelector("#modal-footer").appendChild(script)
-
-
+    return(
+      <a href="http://localhost:3000/payment"></a>
+    )
   };
 
   return (
@@ -151,7 +128,8 @@ const Carrito = () => {
             <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + parseInt(des.precio) * des.cantidad, 0)}`}</p>
 
             <button className="btn btn-danger" onClick={borrarCarrito}>Vaciar carrito</button>
-            <button className="btn btn-success" onClick={comprarBtnHandler}>Hacer compra</button>
+            {/* <button className="btn btn-success" onClick={comprarBtnHandler}>Hacer compra</button> */}
+            <a href="http://localhost:3000/payment"><button className="btn btn-success">Hacer compra</button></a>
           </div>
         </div>
       </div>
