@@ -6,8 +6,8 @@ const nosotros = [
     description: "Esto es una descripcion",
     picture:
       "https://media-exp1.licdn.com/dms/image/D4D35AQGKj9A0Fya2Gw/profile-framedphoto-shrink_800_800/0/1662662693636?e=1669914000&v=beta&t=Aefev8GwReASia9KrSsFejIL_tQI5VdHquKkJEt_Dh4",
-    linkedin: "https://www.buenosaires.gob.ar/gobierno/ceamse-0",
-    github: "https://www.pedidosya.com.ar/cadenas/mi-gusto",
+    linkedin: "https://www.linkedin.com/in/agustin-millan-415752244/",
+    github: "https://github.com/AgustinMillan",
   },
   {
     name: "Aca va el nombre",
@@ -26,21 +26,21 @@ const nosotros = [
   {
     name: "Florentín Leandro",
     description: "Esto es una descripcion",
-    picture: 'https://avatars.githubusercontent.com/u/102199433?v=4', //url de la imagen
+    picture: "https://avatars.githubusercontent.com/u/102199433?v=4", //url de la imagen
     linkedin: "https://www.linkedin.com/in/leandro-florentin/", //aca va tu linkedin
     github: "https://github.com/LeandroFlorentin", //aca va tu github
   },
   {
-    name: "Aca va el nombre",
-    description: "Esto es una descripcion",
-    picture: null, //url de la imagen
-    linkedin: "https://www.buenosaires.gob.ar/gobierno/ceamse-0", //aca va tu linkedin
-    github: "https://github.com/AgustinMillan", //aca va tu github
+    name: "Carla Marquez",
+    description: "Experta en logos para e-commerce de plantas.",
+    picture: "https://avatars.githubusercontent.com/u/93951673?v=4", //url de la imagen
+    linkedin: "https://www.linkedin.com/in/carla-marquez-/", //aca va tu linkedin
+    github: "https://github.com/caluMarquez", //aca va tu github
   },
   {
     name: "Juan Cruz Rolon",
     description:
-      "Soy un habil programador el cual llego tarde al reparto de compañeros de equipo.",
+      "Experto en la resolucion de problemas los domingos a la noche.",
     picture:
       "https://media-exp1.licdn.com/dms/image/C4D03AQHlfnlOxICgxg/profile-displayphoto-shrink_800_800/0/1667884218391?e=1674691200&v=beta&t=fbtu6wrPgqF1I1qI1wyyB-lTqbMmLD10RYKv_JVG5IE",
     linkedin: "https://www.linkedin.com/in/juan-rol%C3%B3n-4b58bb23a/",
