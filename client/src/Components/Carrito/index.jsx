@@ -24,7 +24,7 @@ const Carrito = () => {
           timeout: 1500,
         });
       },
-      () => {},
+      () => { },
       {
         zindex: 99999999,
       }
@@ -52,10 +52,10 @@ const Carrito = () => {
       let carritoNuevoValor = arrayCarrito?.map((el) =>
         el.nameProd === ele.nameProd
           ? {
-              ...el,
-              cantidad:
-                ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1,
-            }
+            ...el,
+            cantidad:
+              ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1,
+          }
           : el
       );
       localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
@@ -64,9 +64,9 @@ const Carrito = () => {
       let carritoNuevoValor = arrayCarrito?.map((el) =>
         el.nameProd === ele.nameProd
           ? {
-              ...el,
-              cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad,
-            }
+            ...el,
+            cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad,
+          }
           : el
       );
       localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
@@ -75,7 +75,7 @@ const Carrito = () => {
   };
 
   const handleCheckout = async () => {
-    if(arrayCarrito.length){
+    if (arrayCarrito.length) {
       const items = arrayCarrito.map((i) => ({
         price_data: {
           currency: "usd",
@@ -89,12 +89,14 @@ const Carrito = () => {
       const response = axios.post(
         "http://localhost:3001/pagos/create-checkout-session",
         { items }
-      ).then((res)=>{
-        if(res.data){
+      ).then((res) => {
+        if (res.data) {
           window.location.href = res.data // force de URL
+          localStorage.removeItem("carrito");
+          dispatch(carritoStorage([]));
         }
-      }).catch((err)=>console.log(err));
-    }else{
+      }).catch((err) => console.log(err));
+    } else {
       const response = await axios.post("http://localhost:3001/pagos/create-checkout-session")
       // console.log(response.data.info);
       Notiflix.Notify.success(response.data.info, {
@@ -154,9 +156,8 @@ const Carrito = () => {
                             +
                           </button>
                         </div>
-                        <h5 className="precioApartado">{`$${
-                          ele.cantidad * parseInt(ele.precio)
-                        }`}</h5>
+                        <h5 className="precioApartado">{`$${ele.cantidad * parseInt(ele.precio)
+                          }`}</h5>
                         <button
                           className="btnMapeo"
                           onClick={() => eliminarProduct(ele.nameProd)}
@@ -188,7 +189,7 @@ const Carrito = () => {
               Vaciar carrito
             </button>
 
-            <button className="btn btn-success" onClick={()=>handleCheckout()}>
+            <button className="btn btn-success" onClick={() => handleCheckout()}>
               Comprar
             </button>
 
