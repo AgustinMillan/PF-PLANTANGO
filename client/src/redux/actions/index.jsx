@@ -199,8 +199,9 @@ export const getSearch = (search) => {
 };
 
 export function getFav(idU) {
+  if (!idU) idU = ""
   return (dispatch) =>
-    axios(`/user/favorites/${idU}`)
+    axios(`user/favorites/${idU}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_ALL_FAVORITES, payload }));
 }
@@ -350,48 +351,35 @@ export function getComentPlant(idP) {
 
 //MZ
 
-export function creaReview(review){
+export function creaReview(review) {
 
-  return function (dispatch){
-      return fetch('http://localhost:3001/bill/createReview',{
-              method:'POST',
-              headers: {'Content-Type': 'application/json',},
-              body: JSON.stringify({
-                  codProd: review.codProd,
-                  starsReview: review.stars,
-                  textReview: review.textReview
-              })
+  return function (dispatch) {
+    return fetch('http://localhost:3001/bill/createReview', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', },
+      body: JSON.stringify({
+        codProd: review.codProd,
+        starsReview: review.stars,
+        textReview: review.textReview
       })
+    })
       .then(res => res.json())
-      .then(res => {  
-          dispatch({
-              type: "CREATE_REVIEW",
-              payload: res
-          })
+      .then(res => {
+        dispatch({
+          type: "CREATE_REVIEW",
+          payload: res
+        })
       })
-  }   
-};
-
-export const getRatingproduct = (codprod) => {
-  return (dispatch) => {
-    fetch(`http://localhost:3001/bill/ratingproduct/${codprod}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("rating:", Math.round(data.datos[0].Rating))
-        dispatch({ type: GET_RATING_PRODUCT, payload: data.datos[0].Rating });
-      });
-  };
+  }
 };
 
 export const ratingproductupdate = (codprod) => {
   return (dispatch) => {
-    //fetch(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)
     axios
-      .put(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)  
+      .put(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: PUT_RATING_PRODUCT, payload: data });
       });
   };
 };
-
